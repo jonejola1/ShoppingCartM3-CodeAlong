@@ -9,13 +9,18 @@ namespace ShoppingCart
     internal class OrderLine
     {
 
-        private string _product;
-        private int _count;
+        public Product Product { get; private set; }
+        public int Count { get; private set; }
 
-        public OrderLine(string aProduct, int aCount)
+        public OrderLine(Product aProduct, int aCount)
         {
-            _product = aProduct;
-            _count = aCount;
+            Product = aProduct;
+            Count = aCount;
+        }
+
+        public void addCount(int aCount)
+        {
+            Count += aCount;
         }
     }
 }

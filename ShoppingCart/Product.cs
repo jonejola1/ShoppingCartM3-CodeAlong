@@ -8,13 +8,13 @@ namespace ShoppingCart
 {
     internal class Product
     {
-        private string _name;
-        private int _price;
+        public string Name { get; private set; }
+        public int Price { get; private set; }
 
         public Product(string aName, int aPrice)
         {
-            _name = aName;
-            _price = aPrice;
+            Name = aName;
+            Price = aPrice;
         }
     }
 }
