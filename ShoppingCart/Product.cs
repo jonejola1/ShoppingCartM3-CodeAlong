@@ -15,6 +15,7 @@ namespace ShoppingCart
         {
             Name = aName;
             Price = aPrice;
+            
         }
     }
 }

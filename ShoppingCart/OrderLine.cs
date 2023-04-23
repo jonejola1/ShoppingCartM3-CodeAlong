@@ -11,14 +11,13 @@ namespace ShoppingCart
 
         public Product Product { get; private set; }
         public int Count { get; private set; }
-
         public OrderLine(Product aProduct, int aCount)
         {
             Product = aProduct;
             Count = aCount;
         }
 
-        public void addCount(int aCount)
+        public void AddCount(int aCount)
         {
             Count += aCount;
         }
