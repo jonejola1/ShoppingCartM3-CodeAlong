@@ -1,43 +1,12 @@
-﻿using System.Data;
-
-namespace ShoppingCart
+﻿namespace ShoppingCart
 {
     internal class ShoppingCart
     {
+        private List<OrderLine> OrderLine = new List<OrderLine>();
 
-        public bool PromtUser(List<OrderLine> aMyShoppingCart)
+        public void Add(Product aProduct, int count, Product[] aProducts)
         {
-            Console.Clear();
-            Console.WriteLine("Make a product to add to cart.");
-            Console.WriteLine("What is the product name?");
-            var productNameInput = Console.ReadLine();
-            string productName = Convert.ToString(productNameInput);
-            Console.WriteLine("What is the price of the product");
-            var productPriceinput = Console.ReadLine();
-            int productPrice = Convert.ToInt32(productPriceinput);
-            Console.WriteLine("quantity of product");
-            var quantityOfProduct = Console.ReadLine();
-            int productQuantity = Convert.ToInt32(quantityOfProduct);
-
-            var productItem = new Product(productName, productPrice);
-            var products = new OrderLine(productItem, productQuantity);
-
-            AddToCart(productItem, productQuantity, aMyShoppingCart);
-            ShowCart(products, aMyShoppingCart);
-
-            Console.WriteLine("do you want to add more to your cart? y/n");
-            var input = Console.ReadLine();
-            
-            if (input == "y")
-            {
-                return true;
-            }
-
-            return false;
-        }
-        public void AddToCart(Product product, int count, List<OrderLine> myShoppingCart)
-        {
-            var existingOrderLine = FindOrderLine(product, myShoppingCart);
+            var existingOrderLine = FindOrderLine(aProduct);
 
             if (existingOrderLine != null)
             {
@@ -45,17 +14,40 @@ namespace ShoppingCart
             }
             else
             {
-                OrderLine myOrderLine = new OrderLine(product, count);
-                myShoppingCart.Add(myOrderLine);
+                OrderLine myOrderLine = new OrderLine(aProduct, count);
+                OrderLine.Add(myOrderLine);
             }
 
-            Console.WriteLine($"Du kjøpte {count} stk. {product}");
+            Console.WriteLine($"Du kjøpte {count} stk. {aProduct}");
         }
-        private OrderLine? FindOrderLine(Product product, List<OrderLine> myShoppingCart)
+
+        public void Show()
+        {
+            if (OrderLine.Count == 0)
+            {
+                Console.WriteLine("Handlekurven er tom.");
+                return;
+            }
+            Console.WriteLine("Handlekurv:");
+            var totalPrice = 0;
+            for (int i = 0; i < OrderLine.Count; i++)
+            {
+                var count = OrderLine[i].Count;
+                var productName = OrderLine[i].Product.Name;
+                var price = OrderLine[i].Product.Price;
+                var orderLinePrice = price * count;
+                Console.WriteLine($"  {count} stk. {productName} a kr {price} = {orderLinePrice}");
+                totalPrice += orderLinePrice;
+            }
+
+            Console.WriteLine($"Totalpris: {totalPrice}");
+        }
+
+        private OrderLine? FindOrderLine(Product product)
         {
             OrderLine existingOrderLine = null;
 
-            foreach (var orderLine in myShoppingCart)
+            foreach (var orderLine in OrderLine)
             {
                 if (orderLine.Product == product)
                 {
@@ -65,28 +57,5 @@ namespace ShoppingCart
             return existingOrderLine;
         }
 
-        public void ShowCart(OrderLine aProducts, List<OrderLine> aMyShoppingCart)
-        {
-            if (aMyShoppingCart.Count == 0)
-            {
-                Console.WriteLine("Handlekurven er tom.");
-                return;
-            }
-
-            Console.WriteLine("Handlekurv:");
-            var totalPrice = 0;
-
-            for (int i = 0; i < aMyShoppingCart.Count; i++)
-            {
-                var count = aMyShoppingCart[i].Count;
-                var productName = aMyShoppingCart[i].Product.Name;
-                var price = aMyShoppingCart[i].Product.Price;
-                var orderLinePrice = price * count;
-                Console.WriteLine($"  {count} stk. {productName} til kr {price} = {orderLinePrice}");
-                totalPrice += orderLinePrice;
-            }
-
-            Console.WriteLine($"Totalpris: {totalPrice}");
-        }
     }
 }

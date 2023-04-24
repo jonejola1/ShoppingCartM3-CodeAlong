@@ -1,3 +1,3 @@
-﻿using ShoppingCart;
+﻿﻿using ShoppingCart;
 
 SimpleShoppingCartDemo.Run();
