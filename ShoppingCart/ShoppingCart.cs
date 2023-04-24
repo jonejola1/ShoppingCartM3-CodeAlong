@@ -26,8 +26,9 @@ namespace ShoppingCart
             ShowCart(products, aMyShoppingCart);
 
             Console.WriteLine("do you want to add more to your cart? y/n");
-            ConsoleKeyInfo inputKey = Console.ReadKey();
-            if (inputKey.KeyChar == 'y')
+            var input = Console.ReadLine();
+            
+            if (input == "y")
             {
                 return true;
             }

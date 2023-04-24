@@ -10,15 +10,16 @@ namespace ShoppingCart
             var myShoppingCart = new List<OrderLine>();
             var myCart = new ShoppingCart();
             Console.WriteLine("Add to cart or quit y/n");
-            ConsoleKeyInfo key = Console.ReadKey();
-            if (key.KeyChar == 'y')
+            var input = Console.ReadLine();
+            if (input == "y")
             {
-                do
+                var doWhile = true;
+                while (doWhile)
                 {
-                    myCart.PromtUser(myShoppingCart);
-                } while (true);
-
+                    doWhile = myCart.PromtUser(myShoppingCart);
+                }
             }
+            else return;
         }
     }
 }
