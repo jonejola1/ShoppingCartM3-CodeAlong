@@ -15,15 +15,14 @@
             
 
             shoppingCart.Show();
-            shoppingCart.Add(A, 1, products);
+            shoppingCart.Add(A, 1);
 
             shoppingCart.Show();
-            shoppingCart.Add(B, 3, products);
+            shoppingCart.Add(B, 3);
 
             shoppingCart.Show();
-            shoppingCart.Add(A, 4, products);
+            shoppingCart.Add(A, 4);
             shoppingCart.Show();
         }
     }
-    
 }
