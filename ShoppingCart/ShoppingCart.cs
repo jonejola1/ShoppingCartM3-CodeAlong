@@ -6,8 +6,6 @@
 
         public void Show()
         {
-            var totalSumOfOrderLine = 0;
-
             if (_orderLines.Count == 0)
             {
                 Console.WriteLine("Handlekurven er tom.");
@@ -19,10 +17,11 @@
 
             foreach (var orderLine in _orderLines)
             {
-                 int SumOfOrderLine = orderLine.Show();
-                 totalSumOfOrderLine += SumOfOrderLine;
+                orderLine.Show();
             }
-            Console.WriteLine($"Totalpris: {totalSumOfOrderLine}");
+
+            var totalPrice = _orderLines.Sum(orderLine => orderLine.TotalPrice);
+            Console.WriteLine($"Totalpris: {totalPrice}");
         }
 
         public void Add(Product aProduct, int count)

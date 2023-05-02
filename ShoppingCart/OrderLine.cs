@@ -17,7 +17,7 @@
             Count += aCount;
         }
 
-        public int Show()
+        public void Show()
         {
             var count = Count;
             var productName = Product.Name;
@@ -25,7 +25,6 @@
             var orderLinePrice = price * count;
             Console.WriteLine($"  {count} stk. {productName} for kr {price} = {orderLinePrice}");
             TotalPrice = orderLinePrice;
-            return TotalPrice;
         }
     }
 }
