@@ -1,13 +1,13 @@
-﻿using System.Runtime.InteropServices;
-
-namespace ShoppingCart
+﻿namespace ShoppingCart
 {
     internal class ShoppingCart
     {
-        private List<OrderLine> _orderLines = new();
+        private List<OrderLine?> _orderLines = new();
 
         public void Show()
         {
+            var totalSumOfOrderLine = 0;
+
             if (_orderLines.Count == 0)
             {
                 Console.WriteLine("Handlekurven er tom.");
@@ -19,10 +19,10 @@ namespace ShoppingCart
 
             foreach (var orderLine in _orderLines)
             {
-                orderLine.Show();
-                Console.WriteLine($"Totalpris: {orderLine.TotalPrice}");
+                 int SumOfOrderLine = orderLine.Show();
+                 totalSumOfOrderLine += SumOfOrderLine;
             }
-
+            Console.WriteLine($"Totalpris: {totalSumOfOrderLine}");
         }
 
         public void Add(Product aProduct, int count)
@@ -38,17 +38,17 @@ namespace ShoppingCart
                 var myOrderLine = new OrderLine(aProduct, count);
                 _orderLines.Add(myOrderLine);
             }
-
+            
             Console.WriteLine($"Du kjøpte {count} stk. {aProduct.Name}");
         }
 
         private OrderLine? FindOrderLine(Product product)
         {
-            OrderLine existingOrderLine = null;
+            OrderLine? existingOrderLine = null;
 
             foreach (var orderLine in _orderLines)
             {
-                if (orderLine.Product == product)
+                if (orderLine?.Product == product)
                 {
                     existingOrderLine = orderLine;
                 }
