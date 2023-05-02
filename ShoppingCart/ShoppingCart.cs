@@ -4,18 +4,22 @@ namespace ShoppingCart
 {
     internal class ShoppingCart
     {
-        private List<OrderLine> OrderLine = new();
+        private List<OrderLine> _orderLines = new();
 
         public void Show()
         {
-            var orderLine = new OrderLine();
-            if (OrderLine.Count == 0)
+            
+
+            if (_orderLines.Count == 0)
             {
                 Console.WriteLine("Handlekurven er tom.");
                 return;
             }
 
-            orderLine.ShowOrderLine(OrderLine);
+            foreach (var orderLine in _orderLines)
+            {
+                orderLine.Show();
+            }
         }
 
         public void Add(Product aProduct, int count)
@@ -28,8 +32,8 @@ namespace ShoppingCart
             }
             else
             {
-                OrderLine myOrderLine = new OrderLine(aProduct, count);
-                OrderLine.Add(myOrderLine);
+                var myOrderLine = new OrderLine(aProduct, count);
+                _orderLines.Add(myOrderLine);
             }
 
             Console.WriteLine($"Du kjøpte {count} stk. {aProduct.Name}");
@@ -39,7 +43,7 @@ namespace ShoppingCart
         {
             OrderLine existingOrderLine = null;
 
-            foreach (var orderLine in OrderLine)
+            foreach (var orderLine in _orderLines)
             {
                 if (orderLine.Product == product)
                 {
