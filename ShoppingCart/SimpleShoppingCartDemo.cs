@@ -14,13 +14,8 @@
 
             
 
-            shoppingCart.Show();
             shoppingCart.Add(A, 1);
-
-            shoppingCart.Show();
             shoppingCart.Add(B, 3);
-
-            shoppingCart.Show();
             shoppingCart.Add(A, 4);
             shoppingCart.Show();
         }

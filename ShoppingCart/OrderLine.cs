@@ -10,6 +10,7 @@ namespace ShoppingCart
     {
         public Product Product { get; private set; }
         public int Count { get; private set; }
+        public int TotalPrice { get; private set; }
 
         public OrderLine(Product aProduct, int aCount)
         {
@@ -22,19 +23,14 @@ namespace ShoppingCart
             Count += aCount;
         }
 
-        
         public void Show()
         {
-            Console.WriteLine("\nHandlekurv:");
-            var totalPrice = 0;
             var count = this.Count;
             var productName = this.Product.Name;
             var price = this.Product.Price;
             var orderLinePrice = price * count;
             Console.WriteLine($"  {count} stk. {productName} for kr {price} = {orderLinePrice}");
-            totalPrice += orderLinePrice;
-
-            Console.WriteLine($"Totalpris: {totalPrice}");
+            TotalPrice += orderLinePrice;
         }
     }
 }

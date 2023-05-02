@@ -8,18 +8,21 @@ namespace ShoppingCart
 
         public void Show()
         {
-            
-
             if (_orderLines.Count == 0)
             {
                 Console.WriteLine("Handlekurven er tom.");
                 return;
             }
 
+            Console.WriteLine("\nHandlekurv:");
+            
+
             foreach (var orderLine in _orderLines)
             {
                 orderLine.Show();
+                Console.WriteLine($"Totalpris: {orderLine.TotalPrice}");
             }
+
         }
 
         public void Add(Product aProduct, int count)
